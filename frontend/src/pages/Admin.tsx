@@ -19,7 +19,7 @@ const Admin: React.FC = () => {
   const [segments, setSegments] = useState<Segment[]>([]);
   const [selectedSegment, setSelectedSegment] = useState<string>('all');
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'users' | 'entry'>('users');
+  const [activeTab, setActiveTab] = useState<'users' | 'notify'>('users');
 
   useEffect(() => {
     const fetchSegments = async () => {
@@ -58,9 +58,9 @@ const Admin: React.FC = () => {
           onClick={() => setActiveTab('users')}
         >Users</button>
         <button
-          className={`px-4 py-2 rounded-t-md font-semibold focus:outline-none transition-colors duration-200 ${activeTab === 'entry' ? 'bg-indigo-600 text-white shadow' : 'bg-indigo-100 text-indigo-700'}`}
-          onClick={() => setActiveTab('entry')}
-        >Entry Monitor</button>
+          className={`px-4 py-2 rounded-t-md font-semibold focus:outline-none transition-colors duration-200 ${activeTab === 'notify' ? 'bg-indigo-600 text-white shadow' : 'bg-indigo-100 text-indigo-700'}`}
+          onClick={() => setActiveTab('notify')}
+        >Notify Users</button>
       </div>
       {activeTab === 'users' && (
         <>
@@ -95,7 +95,7 @@ const Admin: React.FC = () => {
           </table>
         </>
       )}
-      {activeTab === 'entry' && (
+      {activeTab === 'notify' && (
         <div className="bg-white rounded shadow p-6">
           <h2 className="text-xl font-bold mb-4 text-indigo-700">Entry Monitor</h2>
           <div className="mb-4">

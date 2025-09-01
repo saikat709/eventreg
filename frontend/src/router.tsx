@@ -5,8 +5,8 @@ import Registration from './pages/Registration';
 import Profile from './pages/Profile';
 import Page404 from './pages/Page404';
 import Admin from './pages/Admin';
-import AdminScan from './pages/AdminScan';
 import Login from './pages/Login';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -16,9 +16,8 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'registration', element: <Registration /> },
       { path: 'login', element: <Login /> },
-      { path: 'profile', element: <Profile /> },
-      { path: 'admin', element: <Admin /> },
-      { path: 'admin/scan', element: <AdminScan /> },
+      { path: 'profile', element: <ProtectedRoute> <Profile /> </ProtectedRoute> },
+      { path: 'admin', element: <ProtectedRoute> <Admin /> </ProtectedRoute>},
       { path: '*', element: <Page404 /> },
     ],
   },

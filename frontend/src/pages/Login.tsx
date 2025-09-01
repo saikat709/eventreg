@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
 import axios from 'axios';
-import { useAuthStore } from '@/store/auth.store';
+import { useAuthStore } from '../store/auth.store';
 import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
@@ -26,6 +26,7 @@ const Login: React.FC = () => {
     try {
       const response = await axios.post('http://localhost:3001/api/auth/login', formData);
       const { accessToken, refreshToken } = response.data;
+      console.log('Login successful:', response.data);
       setTokens(accessToken, refreshToken);
       navigate('/profile');
     } catch (err: any) {
@@ -36,7 +37,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+    <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 animate-fadeIn">
         <h1 className="text-3xl font-bold text-indigo-700 mb-6 text-center">Login</h1>
         <form onSubmit={handleSubmit} className="space-y-5">

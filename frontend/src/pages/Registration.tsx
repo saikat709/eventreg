@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const tShirtSizes = [
   { value: 'sm', label: 'SM' },
@@ -40,6 +41,8 @@ const Registration: React.FC = () => {
   const [step, setStep] = useState(1);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -146,6 +149,16 @@ const Registration: React.FC = () => {
           </>
         )}
       </form>
+        <div className="mt-6 text-center text-sm">
+          <span className="text-gray-700 font-medium">Don't have an account?</span>{' '}
+          <button
+            type="button"
+            className="text-indigo-600 font-bold hover:underline hover:text-indigo-800 transition-colors duration-200"
+            onClick={() => navigate('/login')}
+          >
+            Login
+          </button>
+        </div>
     </div>
   );
 };
